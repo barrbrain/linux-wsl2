@@ -4,18 +4,18 @@
 #
 #
 
-Name:           linux-ltsprev
+Name:           linux-wsl2
 Version:        6.1.69
 Release:        1331
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.69.tar.xz
+Source0:        https://github.com/barrbrain/WSL2-Linux-Kernel/archive/refs/tags/linux-msft-wsl-6.1.69.tar.gz
 Source1:        config
 Source2:        cmdline
 
-%define ktarget  ltsprev
+%define ktarget  wsl2
 %define kversion %{version}-%{release}.%{ktarget}
 
 BuildRequires:  buildreq-kernel
@@ -135,7 +135,7 @@ Requires:       linux-ltsprev-license = %{version}-%{release}
 Linux kernel build files
 
 %prep
-%setup -q -n linux-6.1.69
+%setup -q -n WSL2-Linux-Kernel-linux-msft-wsl-6.1.69
 
 #cve.patch.start cve patches
 #cve.patch.end
@@ -276,14 +276,15 @@ createCPIO() {
     KernelDir=%{buildroot}/usr/lib/kernel
     ModDir=/usr/lib/modules/${Kversion}
 
-    mkdir -p cpiofile${ModDir}/kernel/drivers/input/{serio,keyboard}
-    mkdir -p cpiofile${ModDir}/kernel/drivers/hid
-    cp %{buildroot}${ModDir}/kernel/drivers/input/serio/i8042.ko      cpiofile${ModDir}/kernel/drivers/input/serio
-    cp %{buildroot}${ModDir}/kernel/drivers/input/serio/libps2.ko     cpiofile${ModDir}/kernel/drivers/input/serio
-    cp %{buildroot}${ModDir}/kernel/drivers/input/keyboard/atkbd.ko   cpiofile${ModDir}/kernel/drivers/input/keyboard
-    cp %{buildroot}${ModDir}/kernel/drivers/hid/hid-logitech-dj.ko    cpiofile${ModDir}/kernel/drivers/hid
-    cp %{buildroot}${ModDir}/kernel/drivers/hid/hid-logitech-hidpp.ko cpiofile${ModDir}/kernel/drivers/hid
-    cp %{buildroot}${ModDir}/kernel/drivers/hid/hid-apple.ko          cpiofile${ModDir}/kernel/drivers/hid
+    mkdir -p cpiofile${ModDir}
+    # mkdir -p cpiofile${ModDir}/kernel/drivers/input/{serio,keyboard}
+    # mkdir -p cpiofile${ModDir}/kernel/drivers/hid
+    # cp %{buildroot}${ModDir}/kernel/drivers/input/serio/i8042.ko      cpiofile${ModDir}/kernel/drivers/input/serio
+    # cp %{buildroot}${ModDir}/kernel/drivers/input/serio/libps2.ko     cpiofile${ModDir}/kernel/drivers/input/serio
+    # cp %{buildroot}${ModDir}/kernel/drivers/input/keyboard/atkbd.ko   cpiofile${ModDir}/kernel/drivers/input/keyboard
+    # cp %{buildroot}${ModDir}/kernel/drivers/hid/hid-logitech-dj.ko    cpiofile${ModDir}/kernel/drivers/hid
+    # cp %{buildroot}${ModDir}/kernel/drivers/hid/hid-logitech-hidpp.ko cpiofile${ModDir}/kernel/drivers/hid
+    # cp %{buildroot}${ModDir}/kernel/drivers/hid/hid-apple.ko          cpiofile${ModDir}/kernel/drivers/hid
     cp %{buildroot}${ModDir}/modules.order   cpiofile${ModDir}
     cp %{buildroot}${ModDir}/modules.builtin cpiofile${ModDir}
 
