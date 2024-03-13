@@ -22,7 +22,7 @@ BuildRequires:  buildreq-kernel
 
 Requires: systemd-bin
 Requires: init-rdahead-extras
-Requires: linux-ltsprev-license = %{version}-%{release}
+Requires: linux-wsl2-license = %{version}-%{release}
 
 # don't strip .ko files!
 %global __os_install_post %{nil}
@@ -103,7 +103,7 @@ The Linux kernel.
 License:        GPL-2.0
 Summary:        The Linux kernel extra files
 Group:          kernel
-Requires:       linux-ltsprev-license = %{version}-%{release}
+Requires:       linux-wsl2-license = %{version}-%{release}
 
 %description extra
 Linux kernel extra files
@@ -127,9 +127,9 @@ Creates a cpio file with some modules
 License:        GPL-2.0
 Summary:        The Linux kernel
 Group:          kernel
-Requires:       linux-ltsprev = %{version}-%{release}
-Requires:       linux-ltsprev-extra = %{version}-%{release}
-Requires:       linux-ltsprev-license = %{version}-%{release}
+Requires:       linux-wsl2 = %{version}-%{release}
+Requires:       linux-wsl2-extra = %{version}-%{release}
+Requires:       linux-wsl2-license = %{version}-%{release}
 
 %description dev
 Linux kernel build files
@@ -303,9 +303,9 @@ createCPIO %{ktarget} %{kversion}
 
 rm -rf %{buildroot}/usr/lib/firmware
 
-mkdir -p %{buildroot}/usr/share/package-licenses/linux-ltsprev
-cp COPYING %{buildroot}/usr/share/package-licenses/linux-ltsprev/COPYING
-cp -a LICENSES/* %{buildroot}/usr/share/package-licenses/linux-ltsprev
+mkdir -p %{buildroot}/usr/share/package-licenses/linux-wsl2
+cp COPYING %{buildroot}/usr/share/package-licenses/linux-wsl2/COPYING
+cp -a LICENSES/* %{buildroot}/usr/share/package-licenses/linux-wsl2
 
 %files
 %dir /usr/lib/kernel
@@ -324,7 +324,7 @@ cp -a LICENSES/* %{buildroot}/usr/share/package-licenses/linux-ltsprev
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/linux-ltsprev
+/usr/share/package-licenses/linux-wsl2
 
 %files cpio
 /usr/lib/kernel/initrd-org.clearlinux.%{ktarget}.%{version}-%{release}
